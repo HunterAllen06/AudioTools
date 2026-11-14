@@ -12,6 +12,7 @@ namespace HunterAllen.AudioTools
 
         public bool UseBpm;
         public float Bpm = 140f;
+        public float Offset = 0;
         
         [Space]
         public AudioSegment[] Segments;
@@ -19,14 +20,14 @@ namespace HunterAllen.AudioTools
         List<Interval> _defaultIntervals;
         List<Interval> _allIntervals => _defaultIntervals.Concat(Intervals).ToList();
 
-        AudioSource _activeAudioSource;
+        public AudioSource ActiveAudioSource;
         AudioSource _availableAudioSource => _useOtherAudioSource ? _audioSourceTwo : _audioSourceOne;
         [SerializeField] AudioSource _audioSourceOne;
         [SerializeField] AudioSource _audioSourceTwo;
 
-        AudioSegment _currentSegment => Segments[_currentSegmentIndex];
+        AudioSegment _currentSegment => Segments[CurrentSegmentIndex];
         Interval _currentInterval;
-        int _currentSegmentIndex;
+        public int CurrentSegmentIndex;
         bool _useOtherAudioSource;
         bool _isNextSegmentReady;
         
@@ -56,12 +57,12 @@ namespace HunterAllen.AudioTools
         
         void Update()
         {
-            if (!_activeAudioSource.isPlaying) return;
+            if (ActiveAudioSource == null || !ActiveAudioSource.isPlaying) return;
 
             foreach (var interval in _allIntervals)
             {
-                float sampledTime = _activeAudioSource.timeSamples / (_activeAudioSource.clip.frequency * interval.IntervalLength);
-                interval.CheckForNewInterval(sampledTime);
+                float sampledTime = ActiveAudioSource.timeSamples / (ActiveAudioSource.clip.frequency * interval.IntervalLength);
+                interval.CheckForNewInterval(sampledTime + Offset);
             }
         }
 
@@ -73,9 +74,9 @@ namespace HunterAllen.AudioTools
         public void PlayClip(AudioClip clip)
         {
             // Play audio
-            _activeAudioSource = _availableAudioSource;
-            _activeAudioSource.clip = clip;
-            _activeAudioSource.Play();
+            ActiveAudioSource = _availableAudioSource;
+            ActiveAudioSource.clip = clip;
+            ActiveAudioSource.Play();
 
             // Flip source
             _useOtherAudioSource = !_useOtherAudioSource;
@@ -117,7 +118,7 @@ namespace HunterAllen.AudioTools
             // If the above is false AND looping is off, return.
             if (!increment && !_currentSegment.LoopUntilNextSegementPlays) return;
 
-            if (increment) _currentSegmentIndex++;
+            if (increment) CurrentSegmentIndex++;
             _isNextSegmentReady = false;
 
             PlayCurrentSegment();
