@@ -5,3 +5,6 @@ This repo primarily exists for personal use, and so projects I'm working on that
 
 # AudioTools
 At the moment, the only script in this repo is a small audio looper tool I've made primarily to loop music. In the inspector for the component, you can choose between looping after a certain amount of music beats, or after a specified amount of time. You may also add multiple segments/parts for a sort of progressive song functionality.
+
+## Another Disclaimer
+As of version 1.1.0, I added 3 systems to the package (Audio Source Pools, Sound Emissions, and Audio Zones/Occlusion). I added these in for my own personal use, so it may be a while before I properly document or make them more user friendly.

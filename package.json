@@ -1,9 +1,13 @@
 {
   "name" : "com.hunterallen.audiotools",
-  "version" : "1.0.0",
+  "version" : "1.1.0",
   "displayName" : "Audio Tools",
   "author": 
   {
     "name": "Hunter Allen"
+  },
+  "dependencies":
+  {
+    "com.hunterallen.utilityscripts" : "https://github.com/HunterAllen06/UtilityScripts.git"
   }
 }

@@ -1,7 +1,9 @@
 {
     "name": "HunterAllen.AudioTools",
     "rootNamespace": "HunterAllen.AudioTools",
-    "references": [],
+    "references": [
+        "GUID:49dd5e3e9d6515747a4cc43ce51b8dc7"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

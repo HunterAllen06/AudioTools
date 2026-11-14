@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b889f55974ae145b8100396425ede6, type: 3}
+  m_Name: AudioZoneGlobalSettings
+  m_EditorClassIdentifier: INS::INS.Audio.AudioZoneGlobalSettings
+  MaxRoomSize: 2500
+  AudioZoneCollisionLayer:
+    serializedVersion: 2
+    m_Bits: 1073741824
+  OcclusionLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  AbsorptionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0
+      value: 1
+      inSlope: -0.80199504
+      outSlope: -0.80199504
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.17488264
+    - serializedVersion: 3
+      time: 7
+      value: 0
+      inSlope: -0.032282893
+      outSlope: -0.032282893
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.6690141
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  SmallRoomFullAbsorption:
+    DryLevel: 0
+    Room: -500
+    RoomHF: -5000
+    RoomLF: 0
+    DecayTime: 0.27
+    DecayHFRatio: 0.4
+    ReflectionsLevel: -504
+    ReflectionsDelay: 0
+    ReverbLevel: 207
+    ReverbDelay: 0.002
+    HFReference: 5000
+    LFReference: 250
+    Diffusion: 100
+    Density: 100
+  BigRoomFullAbsorption:
+    DryLevel: 0
+    Room: -1000
+    RoomHF: -2000
+    RoomLF: 0
+    DecayTime: 1.49
+    DecayHFRatio: 0.5
+    ReflectionsLevel: -2466
+    ReflectionsDelay: 0
+    ReverbLevel: -1926
+    ReverbDelay: 0.1
+    HFReference: 5000
+    LFReference: 250
+    Diffusion: 21
+    Density: 100
+  SmallRoomNoAbsorption:
+    DryLevel: 0
+    Room: -1000
+    RoomHF: -1200
+    RoomLF: 0
+    DecayTime: 1.49
+    DecayHFRatio: 0.54
+    ReflectionsLevel: -370
+    ReflectionsDelay: 0
+    ReverbLevel: 1030
+    ReverbDelay: 0.011
+    HFReference: 5000
+    LFReference: 250
+    Diffusion: 100
+    Density: 60
+  BigRoomNoAbsorption:
+    DryLevel: 0
+    Room: -1000
+    RoomHF: -1000
+    RoomLF: 0
+    DecayTime: 10.05
+    DecayHFRatio: 0.23
+    ReflectionsLevel: -602
+    ReflectionsDelay: 0
+    ReverbLevel: 198
+    ReverbDelay: 0.03
+    HFReference: 5000
+    LFReference: 250
+    Diffusion: 100
+    Density: 100
+  SmallRoomFullAbsorptionPreset: 2
+  BigRoomFullAbsorptionPreset: 20
+  SmallRoomNoAbsorptionPreset: 4
+  BigRoomNoAbsorptionPreset: 11
