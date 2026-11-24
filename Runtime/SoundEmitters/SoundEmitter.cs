@@ -9,11 +9,12 @@ namespace HunterAllen.AudioTools
         [SerializeField] internal float MaxDistance = 25f;
         [SerializeField] internal float RolloffExponent = 1.2f;
         [SerializeField] internal float Duration = 0f;
+        [SerializeField] internal string Tag = "Default";
         
         [ContextMenu("Emit Sound")]
         public void EmitSound()
         {
-            SoundEmissionManager.PlaySound(transform.position, Volume, MaxDistance, RolloffExponent, Duration);
+            SoundEmissionManager.PlaySound(() => transform.position, Volume, MaxDistance, RolloffExponent, Duration, Tag);
         }
     }
 }

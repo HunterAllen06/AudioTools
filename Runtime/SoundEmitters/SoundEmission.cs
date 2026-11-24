@@ -1,15 +1,17 @@
+using System;
 using UnityEngine;
 
 namespace HunterAllen.AudioTools
 {
     [System.Serializable]
-    internal struct SoundEmission
+    public struct SoundEmission
     {
-        internal Vector3 Position;
-        internal float Volume;
-        internal float MaxDistance;
-        internal float RolloffExponent;
-        internal float EndTime;
-        internal ushort Id;
+        public Func<Vector3> Position;
+        public float Volume;
+        public float MaxDistance;
+        public float RolloffExponent;
+        public float EndTime;
+        public ushort Id;
+        public string Tag;
     }
 }

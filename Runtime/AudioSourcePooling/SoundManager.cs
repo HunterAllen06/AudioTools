@@ -167,6 +167,7 @@ namespace HunterAllen.AudioTools
         {
             if (_listener == null) return;
             soundPlayer.CalculateDistanceToListener(_listener);
+            soundPlayer.HandleTransform();
         }
         #endregion
 

@@ -1,0 +1,18 @@
+{
+    "name": "HunterAllen.AudioTools.Editor",
+    "rootNamespace": "HunterAllen.AudioTools.Editor",
+    "references": [
+        "GUID:68c74ebb750843e4586e79a718d2451b"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -58,10 +58,6 @@ namespace HunterAllen.AudioTools
                 PlaySound();
             }
         }
-        void Update()
-        {
-            HandleTransform();
-        }
 
         /// <summary>
         /// Plays a sound.
