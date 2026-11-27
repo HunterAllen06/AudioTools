@@ -8,6 +8,11 @@ namespace HunterAllen.AudioTools
     [AddComponentMenu("Hunter Allen/Audio Tools/Emissions/Sound Emission Listener")]
     public class SoundListener : MonoBehaviour
     {
+        #if UNITY_EDITOR
+        [SerializeField]
+        bool _drawGizmos;
+        #endif
+        
         public IEnumerable<SoundEmission> ActiveEmissions => CurrentEmissions.Values;
         
         internal Dictionary<ushort, SoundEmission> CurrentEmissions { get; private set; } = new();
@@ -26,32 +31,35 @@ namespace HunterAllen.AudioTools
 
         internal void HearSound(SoundEmission emission)
         {
-            if (CurrentEmissions.ContainsKey(emission.Id))
+            if (CurrentEmissions.ContainsKey(emission.SoundId))
             {
-                CurrentEmissions[emission.Id] = emission;
+                CurrentEmissions[emission.SoundId] = emission;
             }
             else
             {
-                CurrentEmissions.Add(emission.Id, emission);
+                CurrentEmissions.Add(emission.SoundId, emission);
                 OnHearSound?.Invoke(emission);
             }
         }
         internal void StopHearingSound(SoundEmission emission)
         {
-            if (!CurrentEmissions.ContainsKey(emission.Id)) return;
-            CurrentEmissions.Remove(emission.Id);
+            if (!CurrentEmissions.ContainsKey(emission.SoundId)) return;
+            CurrentEmissions.Remove(emission.SoundId);
             OnStopHearingSound?.Invoke(emission);
         }
 
+        #if UNITY_EDITOR
         void OnDrawGizmos()
         {
+            if (!_drawGizmos) return;
             foreach (var kvp in CurrentEmissions)
             {
                 var e = kvp.Value;
                 Gizmos.color = Color.Lerp(Color.blue, Color.green, e.Volume);
 
-                Gizmos.DrawWireSphere(e.Position(), Mathf.Lerp(0.2f, 0.6f, e.Volume));
+                Gizmos.DrawWireSphere(e.Position(), Mathf.Lerp(0.5f, 0.6f, e.Volume));
             }
         }
+        #endif
     }
 }

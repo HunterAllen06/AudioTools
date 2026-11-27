@@ -78,7 +78,7 @@ namespace HunterAllen.AudioTools
                 var emission = _activeEmissions[i];
                 var distance = Vector3.Distance(emission.Position(), listener.transform.position);
                 var power = GetPower(distance, emission.MaxDistance, emission.RolloffExponent);
-                emission.Volume = power;
+                emission.Volume *= power;
 
                 if (Time.time >= emission.EndTime)
                 {
@@ -111,12 +111,13 @@ namespace HunterAllen.AudioTools
         #endregion
 
         #region Sound Emission Management
-        public static void PlaySound(Func<Vector3> position, float volume = 1f, float maxDistance = 20f, float rolloffExponent = 1.2f, float duration = 0f, string tag = "Default")
+        public static void PlaySound(string emitterId, Func<Vector3> position, float volume = 1f, float maxDistance = 20f, float rolloffExponent = 1.2f, float duration = 0f, string tag = "Default")
         {
             VerifyInstance();
             var emission = new SoundEmission()
             {
-                Id = _emitterIndex,
+                EmitterId = emitterId,
+                SoundId = _emitterIndex,
                 Position = position,
                 Volume = volume,
                 MaxDistance = maxDistance,
@@ -130,7 +131,7 @@ namespace HunterAllen.AudioTools
         #endregion
 
         #region Utility
-        static float GetPower(float distance, float maxDistance, float rolloffExponent) => Mathf.Pow(1f - (distance / maxDistance), rolloffExponent);
+        static float GetPower(float distance, float maxDistance, float rolloffExponent) => Mathf.Pow(1f - Mathf.Min(0.999f, distance / maxDistance), rolloffExponent);
         static void VerifyInstance()
         {
             _instance ??= new GameObject("SoundEmissionManager").AddComponent<SoundEmissionManager>();

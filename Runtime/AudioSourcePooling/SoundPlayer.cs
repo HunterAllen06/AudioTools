@@ -118,22 +118,26 @@ namespace HunterAllen.AudioTools
 
             if (SoundType == SoundType._2D)
             {
-                SetParent(null, Vector3.zero);
+                SetParent(null);
+                SetPosition(Vector3.zero);
                 return;
             }
 
-            if (transform.parent != null) SetParent(transform.parent, transform.localPosition);
-            else SetPosition(transform.position);
+            if (transform.parent != null)
+            {
+                SetParent(transform.parent);
+            }
+            
+            SetPosition(transform.position);
         }
-        internal void SetParent(Transform parent, Vector3 localPosition)
+        internal void SetParent(Transform parent)
         {
-            if (CurrentAudioSource == null) return;
+            if (CurrentAudioSource == null || CurrentAudioSource.transform.parent == parent) return;
             CurrentAudioSource.transform.SetParent(parent);
-            CurrentAudioSource.transform.localPosition = localPosition;
         }
         internal void SetPosition(Vector3 position)
         {
-            if (CurrentAudioSource == null) return;
+            if (CurrentAudioSource == null || CurrentAudioSource.transform.position == position) return;
             CurrentAudioSource.transform.position = position;
         }
 
